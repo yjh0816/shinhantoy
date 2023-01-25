@@ -16,6 +16,6 @@ $ python manage.py runserver
 
 ## Features
 - Get order list (maximum 10)
-
+- Get order detail
 ## References
 1. [FastCampus Lecture Github](https://github.com/Alghost/shinhantoy)
