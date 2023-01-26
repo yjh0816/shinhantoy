@@ -23,6 +23,26 @@
               }
             });
         });
+        function search() {
+          ord_no = $("#ord_no").val()
+          $.ajax({
+          type: 'GET',
+          url: 'http://127.0.0.1:8000/api/order?ord_no='+ ord_no,
+          success: (result) => {
+            console.log(result);
+            const order = result.results[0];
+            $("#orders").html("");
+            $("#orders").append(
+                  $(`<tr onclick="location.href='file:///C:/Users/user/Documents/dev/shinhantoy/shinhantoy/order_detail.html?order_id=${order.id}'">
+                  <td>${order.ord_ymd}</td>
+                  <td>${order.ord_no}</td>
+                  </tr>`));
+          },
+          error: (result) => {
+            console.error(result);
+          }
+          })
+        }
     </script>
   </head>
   <body>
@@ -41,6 +61,13 @@
           </tr>
         </tbody>
       </table>
+      <div class="text-end text-right form-group mb-3">
+        <label for="ord_no"></label>
+        <input type="text" class="form-ord_nocontrol" id="ord_no" name="ord_no">
+      </div>
+      <div class="text-end text-right">
+          <button type="submit" class="btn btn-primary" onclick="search()">검색</button>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
