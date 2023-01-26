@@ -6,6 +6,7 @@ This is django toy project with ShinhanInvest.
 $ pip install django
 $ pip install djangorestframework
 $ pip install django-cors-headers
+$ pip install djangorestframework-simplejwt
 ```
 ## How to start
 - You must need Django secrets.json include Django SECRET KEY
@@ -17,5 +18,6 @@ $ python manage.py runserver
 ## Features
 - Get order list (maximum 10)
 - Get order detail
+- Add member
 ## References
 1. [FastCampus Lecture Github](https://github.com/Alghost/shinhantoy)
