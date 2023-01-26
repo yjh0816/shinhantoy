@@ -15,7 +15,7 @@
               for (let i=0; i<result.results.length; i++) {
                 const order = result.results[i];
                 $("#orders").append(
-                  $(`<tr>
+                  $(`<tr onclick="location.href='file:///C:/Users/user/Documents/dev/shinhantoy/shinhantoy/order_detail.html?order_id=${order.id}'">
                   <td>${order.ord_ymd}</td>
                   <td>${order.ord_no}</td>
                   </tr>`)
