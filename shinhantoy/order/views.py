@@ -72,6 +72,7 @@ class CommentCreateView(
             if order_id:
                 return Comment.objects.filter(order_id=order_id) \
                     .filter(id=comment_id) \
+                    .filter(member=self.request.user) \
                     .select_related('member', 'order') \
                     .order_by('-id')
             return Comment.objects.none()
