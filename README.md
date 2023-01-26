@@ -19,5 +19,7 @@ $ python manage.py runserver
 - Get order list (maximum 10)
 - Get order detail
 - Add member
+- Get order comments
+- Add comment
 ## References
 1. [FastCampus Lecture Github](https://github.com/Alghost/shinhantoy)
