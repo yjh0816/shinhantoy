@@ -17,9 +17,11 @@ $ python manage.py runserver
 
 ## Features
 - Get order list (maximum 10)
+- Search order
 - Get order detail
 - Add member
 - Get order comments
 - Add comment
+- Delete own comment
 ## References
 1. [FastCampus Lecture Github](https://github.com/Alghost/shinhantoy)
