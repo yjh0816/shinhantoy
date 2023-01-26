@@ -27,7 +27,7 @@ class Comment(models.Model):
     tstamp = models.DateTimeField(auto_now_add=True, verbose_name='등록일시')
     
     def __str__(self):
-        return f"{self.member}: {self.product}: {self.content}"
+        return f"{self.member}: {self.order}: {self.content}"
     class Meta:
         db_table = 'shinhan_order_comment'
         verbose_name = '주문 댓글'
