@@ -40,6 +40,9 @@
                     $(`<li class="list-group-item">
                       ${comment.content}<br><br>
                       ${comment.member_username} (${comment.tstamp})
+                      <div class="text-end text-right">
+                        <button type="submit" class="btn" onclick="deleteComment(${comment.id})">삭제</button>
+                      </div>
                     </li>`)
                   );
                 }
@@ -61,6 +64,27 @@
           },
           success: (result) => {
             alert("댓글이 등록되었습니다");
+          },
+          error: (result) => {
+            console.error(result);
+          }
+          })
+        }
+        function deleteComment(c_id) {
+          const search = new URLSearchParams(location.search)
+          const order_id = search.get('order_id')
+          $.ajax({
+          type: 'DELETE',
+          url: 'http://127.0.0.1:8000/api/order/'+order_id+'/comment/'+c_id,
+          // data: {
+          //   content: $("#comment").val(),
+          //   order: order_id,
+          // },
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization","JWT "+ $("#token").val());
+          },
+          success: (result) => {
+            alert("댓글이 삭제되었습니다");
           },
           error: (result) => {
             console.error(result);
