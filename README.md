@@ -25,3 +25,4 @@ $ python manage.py runserver
 - Delete own comment
 ## References
 1. [FastCampus Lecture Github](https://github.com/Alghost/shinhantoy)
+2. [Github: jiminpark23](https://github.com/jiminpark23/ShinhanPDA_Toy/blob/main/shinhantoy/order_detail.html)
