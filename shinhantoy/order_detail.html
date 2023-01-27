@@ -123,21 +123,20 @@
           </tr>
         </tbody>
       </table>
-      <!-- <h1 id="productName" class="text-center"></h1>
-      <ul>
-        <li>가격: <span id="productPrice"></span></li>
-        <li>유형: <span id="productType"></span></li>
-      </ul> -->
-      <div class="form-group mb-3">
-        <label for="token">토큰</label>
-        <input type="text" class="form-control" id="token" name="token">
-      </div>
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="comment" style="height: 100px"></textarea>
-        <label for="comment"></label>
-      </div>
-      <div class="text-end text-right">
-        <button type="submit" class="btn btn-primary" onclick="addComment()">댓글쓰기</button>
+      <hr>
+      <div>
+        <p>댓글쓰기</p>
+        <div class="form-group mb-3">
+          <label for="token">토큰</label>
+          <input type="text" class="form-control" id="token" name="token">
+        </div>
+        <div class="form-group mb-3">
+          <label for="comment">내용</label>
+          <textarea class="form-control" id="comment" style="height: 100px"></textarea>
+        </div>
+        <div class="text-end text-right">
+          <button type="submit" class="btn btn-primary" onclick="addComment()">댓글쓰기</button>
+        </div>
       </div>
       <hr>
       <ul class="list-group list-group-flush" id="comments">
