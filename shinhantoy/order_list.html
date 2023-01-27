@@ -8,10 +8,53 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-          $.get('http://127.0.0.1:8000/api/order')
+          const search = new URLSearchParams(location.search)
+          let page = search.get('page')
+          if (!page) {page = 1;}
+
+          $.get('http://127.0.0.1:8000/api/order?page='+ page)
             .then((result) => {
               console.log(result);
               $("#orders").html("");
+              $("#pagination").html("");
+              page = Number(page)
+              const total = result.count;
+              let pages = Math.ceil(total/10);
+
+              let startpage = page - 2;
+              let endpage = page + 2;
+
+              if (startpage < 1) {
+                  startpage = 1;
+                  if (pages < 5) {
+                      endpage = pages
+                  }
+                  else {
+                      endpage = 5
+                  }
+              }
+
+              if (endpage > pages) {
+                  startpage = pages - 4;
+                  endpage = pages;
+              }
+              for (let i=startpage; i<endpage+1; i++) {
+                  if (i == page) {
+                    $("#pagination").append(
+                    $(`<li class="page-item active">
+                      <a class="page-link" onclick="go_page(${i})">${i}</a>
+                      </li>`)
+                  );
+                  }
+                  else {
+                    $("#pagination").append(
+                    $(`<li class="page-item">
+                      <a class="page-link" onclick="go_page(${i})">${i}</a>
+                      </li>`)
+                    );
+                  }
+              }
+
               for (let i=0; i<result.results.length; i++) {
                 const order = result.results[i];
                 $("#orders").append(
@@ -43,6 +86,12 @@
           }
           })
         }
+
+        function go_page(page) {
+          const search = new URLSearchParams(location.search)
+          const product_id = search.get('product_id')
+          window.location.href = `?&page=${page}`;
+        }
     </script>
   </head>
   <body>
@@ -61,6 +110,13 @@
           </tr>
         </tbody>
       </table>
+      <hr>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center" id="pagination">
+          <li class="page-item"><a class="page-link" onclick="go_page(1)">1</a></li>
+        </ul>
+      </nav>
+      <hr>
       <div class="text-end text-right form-group mb-3">
         <label for="ord_no"></label>
         <input type="text" class="form-ord_nocontrol" id="ord_no" name="ord_no">
