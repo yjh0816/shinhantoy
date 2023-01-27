@@ -10,6 +10,7 @@ from .serializers import (
     CommentSerializer,
     CommentCreateSerializer,
 )
+from rest_framework.permissions import IsAuthenticated
 
 class OrderListView(
     mixins.ListModelMixin,
@@ -21,7 +22,7 @@ class OrderListView(
         orders = Order.objects.all()
         if 'ord_no' in self.request.query_params:
             ord_no = self.request.query_params['ord_no']
-            orders = orders.filter(ord_no__contains=ord_no)
+            orders = orders.filter(ord_no=ord_no)
 
         return orders.order_by('id')
 
@@ -62,6 +63,7 @@ class CommentCreateView(
     mixins.DestroyModelMixin,
     generics.GenericAPIView,
 ):
+    permission_classes = [IsAuthenticated]
     serializer_class = CommentCreateSerializer
 
     def get_queryset(self):
